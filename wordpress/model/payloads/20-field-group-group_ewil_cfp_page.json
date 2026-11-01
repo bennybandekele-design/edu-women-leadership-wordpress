@@ -1,0 +1,43 @@
+{
+ "key": "group_ewil_cfp_page",
+ "title": "Call for Papers page",
+ "fields": [
+  {
+   "key": "field_ewil_cfp_page_glance_heading",
+   "label": "Summary box heading",
+   "name": "glance_heading",
+   "type": "text"
+  },
+  {
+   "key": "field_ewil_cfp_page_guide_heading",
+   "label": "Guidelines heading",
+   "name": "guide_heading",
+   "type": "text",
+   "instructions": "The guidelines list itself is written in the page editor."
+  },
+  {
+   "key": "field_ewil_cfp_page_form_heading",
+   "label": "Form heading",
+   "name": "form_heading",
+   "type": "text"
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "page_template",
+    "operator": "==",
+    "value": "page-templates/call-for-papers.php"
+   }
+  ]
+ ],
+ "menu_order": 1,
+ "position": "normal",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "",
+ "show_in_rest": false
+}

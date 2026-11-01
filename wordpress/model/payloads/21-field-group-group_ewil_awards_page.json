@@ -1,0 +1,48 @@
+{
+ "key": "group_ewil_awards_page",
+ "title": "Awards page",
+ "fields": [
+  {
+   "key": "field_ewil_awards_page_cat_heading",
+   "label": "Categories box heading",
+   "name": "cat_heading",
+   "type": "text"
+  },
+  {
+   "key": "field_ewil_awards_page_elig_heading",
+   "label": "Eligibility box heading",
+   "name": "elig_heading",
+   "type": "text"
+  },
+  {
+   "key": "field_ewil_awards_page_judg_heading",
+   "label": "Judging box heading",
+   "name": "judg_heading",
+   "type": "text"
+  },
+  {
+   "key": "field_ewil_awards_page_form_heading",
+   "label": "Form heading",
+   "name": "form_heading",
+   "type": "text"
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "page_template",
+    "operator": "==",
+    "value": "page-templates/awards.php"
+   }
+  ]
+ ],
+ "menu_order": 1,
+ "position": "normal",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "Dates, eligibility, judging and guidelines are in Conference Settings → Awards.",
+ "show_in_rest": false
+}

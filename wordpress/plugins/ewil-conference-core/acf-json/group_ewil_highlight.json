@@ -1,0 +1,82 @@
+{
+    "key": "group_ewil_highlight",
+    "title": "Highlight details",
+    "fields": [
+        {
+            "key": "field_ewil_highlight_description",
+            "label": "Description",
+            "name": "description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Used for “Why attend” items. Leave empty for “Who should attend” groups.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_ewil_highlight_icon",
+            "label": "Icon",
+            "name": "icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "i-school": "School",
+                "i-users": "People",
+                "i-book": "Book",
+                "i-landmark": "Government building",
+                "i-search": "Research (magnifier)",
+                "i-heart": "Heart",
+                "i-cpu": "Technology (chip)",
+                "i-handshake": "Handshake"
+            },
+            "default_value": "i-school",
+            "return_format": "value",
+            "ui": 0,
+            "multiple": 0,
+            "allow_null": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "ewil_highlight"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Choose the group (Why attend \/ Who should attend) in the Highlight groups box.",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1793564032
+}

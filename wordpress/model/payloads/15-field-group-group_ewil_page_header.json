@@ -1,0 +1,59 @@
+{
+ "key": "group_ewil_page_header",
+ "title": "Page header",
+ "fields": [
+  {
+   "key": "field_ewil_page_header_page_eyebrow",
+   "label": "Eyebrow",
+   "name": "page_eyebrow",
+   "type": "text",
+   "instructions": "Small label above the page heading."
+  },
+  {
+   "key": "field_ewil_page_header_page_heading",
+   "label": "Heading",
+   "name": "page_heading",
+   "type": "text",
+   "instructions": "Leave empty to use the page title."
+  },
+  {
+   "key": "field_ewil_page_header_page_lede",
+   "label": "Intro text",
+   "name": "page_lede",
+   "type": "textarea",
+   "rows": 3,
+   "new_lines": ""
+  },
+  {
+   "key": "field_ewil_page_header_page_button",
+   "label": "Button",
+   "name": "page_button",
+   "type": "link",
+   "return_format": "array",
+   "instructions": "Button text and where it goes. Leave empty to hide the button."
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "post_type",
+    "operator": "==",
+    "value": "page"
+   },
+   {
+    "param": "page_type",
+    "operator": "!=",
+    "value": "front_page"
+   }
+  ]
+ ],
+ "menu_order": 0,
+ "position": "acf_after_title",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "",
+ "show_in_rest": false
+}

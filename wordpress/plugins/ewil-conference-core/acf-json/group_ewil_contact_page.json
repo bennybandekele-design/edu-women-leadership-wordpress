@@ -1,0 +1,48 @@
+{
+    "key": "group_ewil_contact_page",
+    "title": "Contact page",
+    "fields": [
+        {
+            "key": "field_ewil_contact_page_box_heading",
+            "label": "Contact box heading",
+            "name": "box_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Leave empty to use the host organisation's name.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/contact.php"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Email, phone and address are in Conference Settings → Contact & social.",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1793564042
+}

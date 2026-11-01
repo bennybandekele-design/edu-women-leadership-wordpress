@@ -1,0 +1,52 @@
+{
+ "key": "group_ewil_highlight",
+ "title": "Highlight details",
+ "fields": [
+  {
+   "key": "field_ewil_highlight_description",
+   "label": "Description",
+   "name": "description",
+   "type": "textarea",
+   "rows": 3,
+   "new_lines": "",
+   "instructions": "Used for “Why attend” items. Leave empty for “Who should attend” groups."
+  },
+  {
+   "key": "field_ewil_highlight_icon",
+   "label": "Icon",
+   "name": "icon",
+   "type": "select",
+   "choices": {
+    "i-school": "School",
+    "i-users": "People",
+    "i-book": "Book",
+    "i-landmark": "Government building",
+    "i-search": "Research (magnifier)",
+    "i-heart": "Heart",
+    "i-cpu": "Technology (chip)",
+    "i-handshake": "Handshake"
+   },
+   "default_value": "i-school",
+   "return_format": "value",
+   "ui": 0
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "post_type",
+    "operator": "==",
+    "value": "ewil_highlight"
+   }
+  ]
+ ],
+ "menu_order": 0,
+ "position": "normal",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "Choose the group (Why attend / Who should attend) in the Highlight groups box.",
+ "show_in_rest": false
+}

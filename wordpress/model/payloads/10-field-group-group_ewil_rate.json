@@ -1,0 +1,87 @@
+{
+ "key": "group_ewil_rate",
+ "title": "Rate details",
+ "fields": [
+  {
+   "key": "field_ewil_rate_price",
+   "label": "Price",
+   "name": "price",
+   "type": "text",
+   "instructions": "As it should appear, e.g. R3,500.",
+   "required": 1
+  },
+  {
+   "key": "field_ewil_rate_unit",
+   "label": "Price unit",
+   "name": "unit",
+   "type": "text",
+   "default_value": "per delegate"
+  },
+  {
+   "key": "field_ewil_rate_featured",
+   "label": "Featured rate",
+   "name": "featured",
+   "type": "true_false",
+   "ui": 1,
+   "instructions": "Highlights this card and gives it the orange button."
+  },
+  {
+   "key": "field_ewil_rate_badge",
+   "label": "Badge",
+   "name": "badge",
+   "type": "text",
+   "instructions": "Small label on the card, e.g. Gala dinner included."
+  },
+  {
+   "key": "field_ewil_rate_description",
+   "label": "Description",
+   "name": "description",
+   "type": "textarea",
+   "rows": 3,
+   "new_lines": ""
+  },
+  {
+   "key": "field_ewil_rate_includes",
+   "label": "What’s included",
+   "name": "includes",
+   "type": "textarea",
+   "rows": 3,
+   "new_lines": "",
+   "instructions": "One item per line."
+  },
+  {
+   "key": "field_ewil_rate_note",
+   "label": "Note",
+   "name": "note",
+   "type": "textarea",
+   "rows": 3,
+   "new_lines": "",
+   "instructions": "Shown on the card, and in the registration form when this rate is chosen."
+  },
+  {
+   "key": "field_ewil_rate_button_label",
+   "label": "Button text",
+   "name": "button_label",
+   "type": "text",
+   "default_value": "Register"
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "post_type",
+    "operator": "==",
+    "value": "ewil_rate"
+   }
+  ]
+ ],
+ "menu_order": 0,
+ "position": "normal",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "The rate's web address name (slug) is used in links like /register/?rate=standard.",
+ "show_in_rest": false
+}

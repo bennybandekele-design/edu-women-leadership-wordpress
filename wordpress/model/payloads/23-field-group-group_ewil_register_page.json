@@ -1,0 +1,30 @@
+{
+ "key": "group_ewil_register_page",
+ "title": "Register page",
+ "fields": [
+  {
+   "key": "field_ewil_register_page_form_heading",
+   "label": "Form heading",
+   "name": "form_heading",
+   "type": "text"
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "page_template",
+    "operator": "==",
+    "value": "page-templates/register.php"
+   }
+  ]
+ ],
+ "menu_order": 1,
+ "position": "normal",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "",
+ "show_in_rest": false
+}

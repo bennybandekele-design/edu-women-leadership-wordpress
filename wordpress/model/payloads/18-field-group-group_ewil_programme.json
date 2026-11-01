@@ -1,0 +1,128 @@
+{
+ "key": "group_ewil_programme",
+ "title": "Programme page",
+ "fields": [
+  {
+   "key": "field_ewil_programme_box_1",
+   "label": "Info box 1",
+   "name": "box_1",
+   "type": "group",
+   "layout": "block",
+   "sub_fields": [
+    {
+     "label": "Label",
+     "name": "label",
+     "type": "text",
+     "key": "field_ewil_programme_box_1_label"
+    },
+    {
+     "label": "Main text",
+     "name": "value",
+     "type": "text",
+     "key": "field_ewil_programme_box_1_value"
+    },
+    {
+     "label": "Note",
+     "name": "note",
+     "type": "text",
+     "key": "field_ewil_programme_box_1_note"
+    }
+   ],
+   "instructions": "You can use {dates}, {venue}, {city}, {year}, {early_bird}, {abstract}, {bio}, {tracks} and {host}; they are filled in from Conference Settings."
+  },
+  {
+   "key": "field_ewil_programme_box_2",
+   "label": "Info box 2",
+   "name": "box_2",
+   "type": "group",
+   "layout": "block",
+   "sub_fields": [
+    {
+     "label": "Label",
+     "name": "label",
+     "type": "text",
+     "key": "field_ewil_programme_box_2_label"
+    },
+    {
+     "label": "Main text",
+     "name": "value",
+     "type": "text",
+     "key": "field_ewil_programme_box_2_value"
+    },
+    {
+     "label": "Note",
+     "name": "note",
+     "type": "text",
+     "key": "field_ewil_programme_box_2_note"
+    }
+   ],
+   "instructions": ""
+  },
+  {
+   "key": "field_ewil_programme_box_3",
+   "label": "Info box 3",
+   "name": "box_3",
+   "type": "group",
+   "layout": "block",
+   "sub_fields": [
+    {
+     "label": "Label",
+     "name": "label",
+     "type": "text",
+     "key": "field_ewil_programme_box_3_label"
+    },
+    {
+     "label": "Main text",
+     "name": "value",
+     "type": "text",
+     "key": "field_ewil_programme_box_3_value"
+    },
+    {
+     "label": "Note",
+     "name": "note",
+     "type": "text",
+     "key": "field_ewil_programme_box_3_note"
+    }
+   ],
+   "instructions": ""
+  },
+  {
+   "key": "field_ewil_programme_tracks_eyebrow",
+   "label": "Tracks: eyebrow",
+   "name": "tracks_eyebrow",
+   "type": "text"
+  },
+  {
+   "key": "field_ewil_programme_tracks_heading",
+   "label": "Tracks: heading",
+   "name": "tracks_heading",
+   "type": "text"
+  },
+  {
+   "key": "field_ewil_programme_prog_button",
+   "label": "Button below the tracks",
+   "name": "prog_button",
+   "type": "link",
+   "return_format": "array",
+   "instructions": "Button text and where it goes. Leave empty to hide the button."
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "page_template",
+    "operator": "==",
+    "value": "page-templates/programme.php"
+   }
+  ]
+ ],
+ "menu_order": 1,
+ "position": "normal",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "",
+ "show_in_rest": false
+}

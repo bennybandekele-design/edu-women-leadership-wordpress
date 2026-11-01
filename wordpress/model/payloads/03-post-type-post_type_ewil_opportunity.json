@@ -1,0 +1,43 @@
+{
+ "key": "post_type_ewil_opportunity",
+ "post_type": "ewil_opportunity",
+ "title": "Partnership opportunities",
+ "labels": {
+  "name": "Partnership opportunities",
+  "singular_name": "Partnership opportunity",
+  "menu_name": "Partnership opportunities",
+  "all_items": "All partnership opportunities",
+  "add_new": "Add partnership opportunity",
+  "add_new_item": "Add partnership opportunity",
+  "edit_item": "Edit partnership opportunity",
+  "new_item": "New partnership opportunity",
+  "view_item": "View partnership opportunity",
+  "search_items": "Search partnership opportunities",
+  "not_found": "No partnership opportunities yet",
+  "not_found_in_trash": "No partnership opportunities in the bin"
+ },
+ "description": "Ways to partner, shown on the homepage and the Partners page, and in the enquiry form.",
+ "public": false,
+ "publicly_queryable": false,
+ "show_ui": true,
+ "show_in_menu": true,
+ "show_in_nav_menus": false,
+ "show_in_admin_bar": false,
+ "exclude_from_search": true,
+ "has_archive": false,
+ "hierarchical": false,
+ "rewrite": false,
+ "query_var": false,
+ "show_in_rest": true,
+ "menu_position": 28,
+ "menu_icon": "dashicons-groups",
+ "supports": [
+  "title",
+  "page-attributes"
+ ],
+ "taxonomies": [],
+ "enter_title_here": "Opportunity name",
+ "advanced_configuration": true,
+ "active": true,
+ "delete_with_user": false
+}

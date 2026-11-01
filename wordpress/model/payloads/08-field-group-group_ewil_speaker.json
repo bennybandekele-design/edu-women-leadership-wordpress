@@ -1,0 +1,69 @@
+{
+ "key": "group_ewil_speaker",
+ "title": "Speaker details",
+ "fields": [
+  {
+   "key": "field_ewil_speaker_role",
+   "label": "Role",
+   "name": "role",
+   "type": "text",
+   "instructions": "For example Principal, or Director of Learning."
+  },
+  {
+   "key": "field_ewil_speaker_organisation",
+   "label": "Organisation",
+   "name": "organisation",
+   "type": "text"
+  },
+  {
+   "key": "field_ewil_speaker_session",
+   "label": "Session title",
+   "name": "session",
+   "type": "text",
+   "instructions": "Leave empty until the session is confirmed."
+  },
+  {
+   "key": "field_ewil_speaker_bio",
+   "label": "Short biography",
+   "name": "bio",
+   "type": "textarea",
+   "rows": 3,
+   "new_lines": "",
+   "maxlength": 320,
+   "instructions": "Up to about 40 words. Shown when visitors hover over the portrait."
+  },
+  {
+   "key": "field_ewil_speaker_linkedin",
+   "label": "LinkedIn profile",
+   "name": "linkedin",
+   "type": "url"
+  },
+  {
+   "key": "field_ewil_speaker_show_on_home",
+   "label": "Show on the homepage",
+   "name": "show_on_home",
+   "type": "true_false",
+   "ui": 1,
+   "default_value": 1,
+   "instructions": "The first six speakers with this switched on appear on the homepage."
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "post_type",
+    "operator": "==",
+    "value": "ewil_speaker"
+   }
+  ]
+ ],
+ "menu_order": 0,
+ "position": "normal",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "Portrait: use the Featured image box.",
+ "show_in_rest": false
+}

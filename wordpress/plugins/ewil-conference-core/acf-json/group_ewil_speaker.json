@@ -1,0 +1,145 @@
+{
+    "key": "group_ewil_speaker",
+    "title": "Speaker details",
+    "fields": [
+        {
+            "key": "field_ewil_speaker_role",
+            "label": "Role",
+            "name": "role",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "For example Principal, or Director of Learning.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_ewil_speaker_organisation",
+            "label": "Organisation",
+            "name": "organisation",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_ewil_speaker_session",
+            "label": "Session title",
+            "name": "session",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Leave empty until the session is confirmed.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_ewil_speaker_bio",
+            "label": "Short biography",
+            "name": "bio",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Up to about 40 words. Shown when visitors hover over the portrait.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": "",
+            "maxlength": 320,
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_ewil_speaker_linkedin",
+            "label": "LinkedIn profile",
+            "name": "linkedin",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_ewil_speaker_show_on_home",
+            "label": "Show on the homepage",
+            "name": "show_on_home",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "The first six speakers with this switched on appear on the homepage.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "ewil_speaker"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Portrait: use the Featured image box.",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1793564027
+}

@@ -1,0 +1,33 @@
+{
+ "key": "group_ewil_award_category",
+ "title": "Category details",
+ "fields": [
+  {
+   "key": "field_ewil_award_category_description",
+   "label": "Description",
+   "name": "description",
+   "type": "textarea",
+   "rows": 3,
+   "new_lines": "",
+   "instructions": "Optional."
+  }
+ ],
+ "location": [
+  [
+   {
+    "param": "post_type",
+    "operator": "==",
+    "value": "ewil_award_category"
+   }
+  ]
+ ],
+ "menu_order": 0,
+ "position": "normal",
+ "style": "default",
+ "label_placement": "top",
+ "instruction_placement": "label",
+ "hide_on_screen": [],
+ "active": true,
+ "description": "",
+ "show_in_rest": false
+}
