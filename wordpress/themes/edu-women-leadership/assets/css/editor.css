@@ -1,0 +1,27 @@
+/* Block editor: the design's fonts, colours and text styles, so editor text
+   looks like the page. Tokens copied from main.css. */
+:root {
+  --brand-purple: #604078; --brand-orange: #F28C28; --brand-gold: #E8A13A; --brand-charcoal: #33313A; --brand-warmwhite: #FFF9F2;
+  --purple-950: #2E1E3D;
+  --surface: #FFF9F2; --surface-raised: #FFFFFF; --surface-tint: #F3ECF6; --surface-warm: #FDEBD9; --surface-featured: #FBF0DC; --surface-inverse: #2E1E3D;
+  --ink: #33313A; --ink-muted: #5E5A66; --ink-brand: #604078; --accent-text: #A6510A; --ink-inverse: #FFF9F2; --accent-on-inverse: #E8A13A;
+  --primary: #604078; --primary-hover: #4D3262; --on-primary: #FFFFFF; --cta: #F28C28; --cta-hover: #DE7A16; --on-cta: #2B1A0C; --on-gold: #2B1A0C;
+  --border: #E6DDD3; --border-strong: #8A8292; --focus-ring: #A6510A; --success: #1D6B47; --danger: #B3261E;
+  --overlay: rgba(46, 30, 61, 0.72); --overlay-soft: rgba(46, 30, 61, 0.15);
+  --shadow-card: 0 1px 2px rgba(51,49,58,0.06), 0 8px 24px rgba(96,64,120,0.08);
+  --shadow-lift: 0 2px 4px rgba(51,49,58,0.08), 0 18px 40px rgba(96,64,120,0.16);
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-condensed: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+  --radius-sm: 6px; --radius-md: 14px; --radius-lg: 28px; --radius-pill: 999px;
+  --container-max: 1200px; --measure: 62ch; --nav-height: 72px;
+}
+.editor-styles-wrapper { background: var(--surface); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 26px; }
+.editor-styles-wrapper h2 { font-family: var(--font-display); font-weight: 600; font-size: 30px; line-height: 1.2; }
+.editor-styles-wrapper h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 28px; }
+.editor-styles-wrapper .lede { font-size: 19px; line-height: 30px; color: var(--ink-muted); }
+.editor-styles-wrapper .small { font-size: 15px; line-height: 23px; color: var(--ink-muted); }
+.editor-styles-wrapper a { color: var(--ink-brand); }
+.editor-styles-wrapper .wp-block-post-title { font-family: var(--font-display); font-weight: 600; }
+.editor-styles-wrapper .is-root-container { max-width: 680px; margin-inline: auto; }

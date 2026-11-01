@@ -1,0 +1,16 @@
+/* WordPress-only additions. The design itself is in main.css, unchanged. */
+
+/* Keep the sticky header below the admin bar for logged-in editors. */
+.admin-bar .nav { top: calc(32px + env(safe-area-inset-top, 0px)); }
+@media (max-width: 782px) { .admin-bar .nav { top: calc(46px + env(safe-area-inset-top, 0px)); } }
+@media (max-width: 600px) { .admin-bar .nav { top: env(safe-area-inset-top, 0px); } }
+
+/* Editor text inside .prose: tables and quotes in the design's type. */
+.prose blockquote { margin: 0; padding-left: var(--space-4); border-left: 3px solid var(--cta); font-family: var(--font-display); font-size: 20px; line-height: 30px; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.prose th, .prose td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+.prose hr { border: 0; border-top: 1px solid var(--border); width: 100%; }
+.prose .wp-block-table { margin: 0; }
+
+/* Screen-reader text used by WordPress pagination. */
+.screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

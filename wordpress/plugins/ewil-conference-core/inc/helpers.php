@@ -55,6 +55,9 @@ function ewil_tokens( $text ) {
 		'{year}'       => ewil_setting( 'event_year' ),
 		'{host}'       => ewil_setting( 'host' ),
 	);
+	if ( str_contains( (string) $text, '{tracks}' ) ) {
+		$map['{tracks}'] = (string) count( ewil_items( 'ewil_track', array( 'fields' => 'ids' ) ) );
+	}
 	return strtr( (string) $text, $map );
 }
 

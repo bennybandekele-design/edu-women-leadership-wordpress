@@ -123,9 +123,11 @@ function ewil_privacy_link() {
  * @return string[]
  */
 function ewil_titles( $post_type ) {
+	// The stored title, not get_the_title(): display filters turn "&" into
+	// "&#038;", which would no longer match the value the browser sends back.
 	return array_map(
 		function ( $p ) {
-			return get_the_title( $p );
+			return $p->post_title;
 		},
 		ewil_items( $post_type )
 	);
@@ -285,7 +287,8 @@ function ewil_form( $kind ) {
  * Loads the form behaviour script once per page.
  */
 function ewil_enqueue_form_script() {
-	wp_enqueue_script( 'ewil-forms', EWIL_CORE_URL . 'assets/forms.js', array(), EWIL_CORE_VERSION, true );
+	// Version from the file's modification time, so caches pick up every update.
+	wp_enqueue_script( 'ewil-forms', EWIL_CORE_URL . 'assets/forms.js', array(), EWIL_CORE_VERSION . '.' . filemtime( EWIL_CORE_DIR . 'assets/forms.js' ), true );
 	wp_localize_script(
 		'ewil-forms',
 		'EWIL_FORMS',

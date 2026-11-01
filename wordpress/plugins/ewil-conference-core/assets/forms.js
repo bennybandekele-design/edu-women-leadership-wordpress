@@ -85,6 +85,7 @@
   $$("form[data-kind]").forEach(form => {
     const kind = form.dataset.kind;
     if (kind === "nomination") gateNominations(form);
+    if (kind === "registration") showRateNote(form);
     form.addEventListener("input", e => {
       const t = e.target;
       if (t.dataset.min) { const n = words(t.value), wc = t.closest(".field").querySelector("[data-wc]"); wc.textContent = `${n} / ${t.dataset.min}–${t.dataset.max} ${T.wordsUnit}`; wc.classList.toggle("bad", n > 0 && (n < +t.dataset.min || n > +t.dataset.max)); }
