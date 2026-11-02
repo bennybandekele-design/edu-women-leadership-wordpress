@@ -41,7 +41,9 @@ class EWIL_Form_Builder {
 	 * @param string $label Field label.
 	 * @param string $name  Field name.
 	 * @param string $type  text, email, tel, textarea, select or file.
-	 * @param array  $o     Options: req, ac, rows, min, max, hint, options, accept, maxmb.
+	 * @param array  $o     Options: req, ac, rows, min, max, hint, options, accept, maxmb,
+	 *                      default (preselected option, no "Select…"), attrs (extra HTML attributes),
+	 *                      record (label used in emails and exports), delegate (delegate number).
 	 */
 	public function f( $label, $name, $type = 'text', $o = array() ) {
 		$id  = 'f-' . $name . '-' . ( ++self::$fid );
@@ -50,14 +52,15 @@ class EWIL_Form_Builder {
 		$this->fields[ $name ] = array_merge( $o, array( 'label' => $label, 'type' => $type, 'req' => $req ) );
 
 		$lab = '<label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . ( $req ? '<span class="req" aria-hidden="true">*</span>' : ' <span class="opt">(' . esc_html__( 'optional', 'ewil' ) . ')</span>' ) . '</label>';
-		$a   = 'id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" ' . ( $req ? 'required' : '' ) . ' ' . ( ! empty( $o['ac'] ) ? 'autocomplete="' . esc_attr( $o['ac'] ) . '"' : '' ) . ' aria-describedby="' . esc_attr( $id ) . '-h ' . esc_attr( $id ) . '-e"';
+		$a   = 'id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" ' . ( $req ? 'required' : '' ) . ' ' . ( ! empty( $o['ac'] ) ? 'autocomplete="' . esc_attr( $o['ac'] ) . '"' : '' ) . ' aria-describedby="' . esc_attr( $id ) . '-h ' . esc_attr( $id ) . '-e"' . ( ! empty( $o['attrs'] ) ? ' ' . $o['attrs'] : '' );
 
 		if ( 'textarea' === $type ) {
 			$ctl = '<textarea class="input" ' . $a . ' rows="' . (int) ( $o['rows'] ?? 6 ) . '" ' . ( ! empty( $o['min'] ) ? 'data-min="' . (int) $o['min'] . '" data-max="' . (int) $o['max'] . '"' : '' ) . '></textarea>';
 		} elseif ( 'select' === $type ) {
-			$opts = '<option value="" disabled selected>' . esc_html__( 'Select…', 'ewil' ) . '</option>';
+			$has_default = isset( $o['default'] );
+			$opts        = $has_default ? '' : '<option value="" disabled selected>' . esc_html__( 'Select…', 'ewil' ) . '</option>';
 			foreach ( $o['options'] as $option ) {
-				$opts .= '<option>' . esc_html( $option ) . '</option>';
+				$opts .= '<option' . ( $has_default && (string) $option === (string) $o['default'] ? ' selected' : '' ) . '>' . esc_html( $option ) . '</option>';
 			}
 			$ctl = '<select class="input" ' . $a . '>' . $opts . '</select>';
 		} elseif ( 'file' === $type ) {
@@ -221,11 +224,12 @@ function ewil_build_form( $kind ) {
     ' . $notes . '</fieldset>
     <fieldset><legend>' . esc_html__( 'Your details', 'ewil' ) . '</legend>
     <div class="row2">' . $b->f( __( 'Name and surname', 'ewil' ), 'name', 'text', array( 'ac' => 'name' ) ) . $b->f( __( 'Email address', 'ewil' ), 'email', 'email', array( 'ac' => 'email' ) ) . '</div>
-    <div class="row2">' . $b->f( __( 'Mobile number', 'ewil' ), 'phone', 'tel', array( 'ac' => 'tel', 'req' => false ) ) . $b->f( __( 'Professional role', 'ewil' ), 'role', 'select', array( 'options' => $roles ) ) . '</div>
+    <div class="row2">' . $b->f( __( 'Mobile number', 'ewil' ), 'phone', 'tel', array( 'ac' => 'tel' ) ) . $b->f( __( 'Professional role', 'ewil' ), 'role', 'select', array( 'options' => $roles ) ) . '</div>
     <div class="row2">' . $b->f( __( 'School or organisation', 'ewil' ), 'organisation', 'text', array( 'ac' => 'organization' ) ) . $b->f( __( 'Province', 'ewil' ), 'province', 'select', array( 'options' => $provinces ) ) . '</div>
     ' . $b->f( __( 'Country', 'ewil' ), 'country', 'select', array( 'options' => $countries ) ) . '
-    ' . $b->f( __( 'Dietary or accessibility requirements', 'ewil' ), 'requirements', 'textarea', array( 'req' => false, 'rows' => 3 ) ) . '
-    </fieldset>' . $b->consent( 'processing_consent', esc_html__( 'I agree that EduPulse Africa may use these details to manage my registration and contact me about it.', 'ewil' ), true ) . $b->marketing() . $b->submit( __( 'Submit registration', 'ewil' ), 'btn-cta' );
+    ' . $b->f( __( 'Number of delegates', 'ewil' ), 'delegates', 'select', array( 'options' => array_map( 'strval', range( 1, ewil_max_delegates() ) ), 'default' => '1', 'attrs' => 'data-delegates', 'hint' => sprintf( /* translators: %d: maximum delegates */ __( 'Including you. Register up to %d delegates from your school or organisation, all at the rate chosen above.', 'ewil' ), ewil_max_delegates() ) ) ) . '
+    </fieldset>' . ewil_delegate_fieldsets( $b, $roles ) . '
+    ' . $b->f( __( 'Dietary or accessibility requirements', 'ewil' ), 'requirements', 'textarea', array( 'req' => false, 'rows' => 3, 'hint' => __( 'For any delegate. Please include the delegate’s name.', 'ewil' ) ) ) . $b->consent( 'processing_consent', esc_html__( 'I agree that EduPulse Africa may use these details to manage my registration and contact me about it.', 'ewil' ), true ) . $b->marketing() . $b->submit( __( 'Submit registration', 'ewil' ), 'btn-cta' );
 			break;
 
 		case 'contact':
@@ -237,6 +241,35 @@ function ewil_build_form( $kind ) {
 	}
 
 	return array( $html, $b );
+}
+
+/**
+ * Most delegates one registration can include (the contact person counts as one).
+ */
+function ewil_max_delegates() {
+	return (int) apply_filters( 'ewil_max_delegates', 5 );
+}
+
+/**
+ * Sections for delegates 2–5 of a group registration. Hidden and disabled until
+ * the "Number of delegates" choice reveals them, so they are neither checked nor sent.
+ *
+ * @param EWIL_Form_Builder $b     Builder.
+ * @param string[]          $roles Role choices.
+ */
+function ewil_delegate_fieldsets( $b, $roles ) {
+	$html = '';
+	for ( $n = 2; $n <= ewil_max_delegates(); $n++ ) {
+		/* translators: %d: delegate number */
+		$who  = sprintf( __( 'Delegate %d', 'ewil' ), $n );
+		$p    = 'delegate_' . $n . '_';
+		$rec  = fn( $label ) => $who . ': ' . $label;
+		$html .= '<fieldset data-delegate="' . $n . '" hidden disabled><legend>' . esc_html( $who ) . '</legend>
+    <div class="row2">' . $b->f( __( 'Name and surname', 'ewil' ), $p . 'name', 'text', array( 'delegate' => $n, 'record' => $rec( __( 'Name and surname', 'ewil' ) ) ) ) . $b->f( __( 'Email address', 'ewil' ), $p . 'email', 'email', array( 'delegate' => $n, 'record' => $rec( __( 'Email address', 'ewil' ) ) ) ) . '</div>
+    <div class="row2">' . $b->f( __( 'Mobile number', 'ewil' ), $p . 'phone', 'tel', array( 'delegate' => $n, 'record' => $rec( __( 'Mobile number', 'ewil' ) ) ) ) . $b->f( __( 'Professional role', 'ewil' ), $p . 'role', 'select', array( 'options' => $roles, 'delegate' => $n, 'record' => $rec( __( 'Professional role', 'ewil' ) ) ) ) . '</div>
+    </fieldset>';
+	}
+	return $html;
 }
 
 /**

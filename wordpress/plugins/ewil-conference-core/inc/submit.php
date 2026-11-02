@@ -94,8 +94,14 @@ function ewil_handle_submission( WP_REST_Request $request ) {
 	$labels            = array();
 	$errors            = array();
 
+	// Group registrations: only delegates up to the chosen number are checked and stored.
+	$delegates = isset( $builder->fields['delegates'] ) ? max( 1, min( ewil_max_delegates(), (int) ( $params['delegates'] ?? 1 ) ) ) : 1;
+
 	foreach ( $builder->fields as $name => $f ) {
-		$labels[ $name ] = $f['label'];
+		if ( ! empty( $f['delegate'] ) && $f['delegate'] > $delegates ) {
+			continue;
+		}
+		$labels[ $name ] = $f['record'] ?? $f['label'];
 		if ( 'file' === $f['type'] ) {
 			continue;
 		}

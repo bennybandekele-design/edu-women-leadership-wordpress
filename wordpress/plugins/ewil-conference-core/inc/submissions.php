@@ -67,6 +67,10 @@ add_action(
  */
 function ewil_save_submission( $kind, $data, $labels ) {
 	$who = $data['name'] ?? ( $data['nominator_name'] ?? ( $data['email'] ?? '' ) );
+	if ( 'registration' === $kind && (int) ( $data['delegates'] ?? 1 ) > 1 ) {
+		/* translators: 1: contact name, 2: number of delegates */
+		$who = sprintf( __( '%1$s (%2$d delegates)', 'ewil' ), $who, (int) $data['delegates'] );
+	}
 	if ( 'nomination' === $kind && ! empty( $data['nominee_name'] ) ) {
 		/* translators: %s: nominee name */
 		$who = sprintf( __( 'Nomination: %s', 'ewil' ), $data['nominee_name'] );

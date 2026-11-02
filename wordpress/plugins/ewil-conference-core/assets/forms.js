@@ -39,6 +39,18 @@
     $$("input, select, textarea, button", form).forEach(el => el.disabled = true);
   }
 
+  // Group registrations: show one section per extra delegate. Hidden sections
+  // are disabled, so they are neither checked nor sent.
+  function showDelegates(form) {
+    const sel = form.querySelector("[data-delegates]"); if (!sel) return;
+    const n = parseInt(sel.value, 10) || 1;
+    $$("fieldset[data-delegate]", form).forEach(fs => {
+      const on = +fs.dataset.delegate <= n;
+      fs.hidden = !on; fs.disabled = !on;
+      if (!on) $$(".field.invalid", fs).forEach(f => { const el = f.querySelector(".input"); showError(f, el, ""); });
+    });
+  }
+
   function showRateNote(form) {
     const checked = form.querySelector('input[name="rate"]:checked');
     $$("[data-rate-note]", form).forEach(n => n.hidden = !checked || n.dataset.rateNote !== checked.value);
@@ -47,7 +59,7 @@
   async function handleSubmit(form, kind) {
     const status = form.querySelector(".status");
     let ok = true, first = null;
-    $$(".field .input", form).forEach(el => { if (!validateField(el)) { ok = false; first = first || el; } });
+    $$(".field .input", form).forEach(el => { if (el.matches(":disabled")) return; if (!validateField(el)) { ok = false; first = first || el; } });
     const req = $$("input[type=checkbox][required]", form).filter(c => !c.checked);
     if (!ok || req.length) {
       status.hidden = false; status.className = "status bad";
@@ -67,7 +79,7 @@
       status.className = "status ok";
       status.innerHTML = `<strong>${esc(T.received)}</strong><span>${esc(res.message)}</span>${res.note ? `<span class="small">${esc(res.note)}</span>` : ""}`;
       form.reset(); $$("[data-wc]", form).forEach(w => w.textContent = w.textContent.replace(/^\d+/, "0"));
-      showRateNote(form);
+      showRateNote(form); showDelegates(form);
     } else {
       // Show the server's field messages next to the fields, as the browser check does.
       let firstBad = null;
@@ -85,13 +97,14 @@
   $$("form[data-kind]").forEach(form => {
     const kind = form.dataset.kind;
     if (kind === "nomination") gateNominations(form);
-    if (kind === "registration") showRateNote(form);
+    if (kind === "registration") { showRateNote(form); showDelegates(form); }
     form.addEventListener("input", e => {
       const t = e.target;
       if (t.dataset.min) { const n = words(t.value), wc = t.closest(".field").querySelector("[data-wc]"); wc.textContent = `${n} / ${t.dataset.min}–${t.dataset.max} ${T.wordsUnit}`; wc.classList.toggle("bad", n > 0 && (n < +t.dataset.min || n > +t.dataset.max)); }
       if (t.closest(".field.invalid")) validateField(t);
       if (t.name === "rate") showRateNote(form);
     });
+    form.addEventListener("change", e => { if (e.target.matches("[data-delegates]")) showDelegates(form); });
     form.addEventListener("submit", e => { e.preventDefault(); handleSubmit(form, kind); });
   });
 })();
