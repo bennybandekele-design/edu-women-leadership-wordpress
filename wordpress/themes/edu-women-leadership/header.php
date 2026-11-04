@@ -39,6 +39,8 @@ $ewil_link     = ewil_setting( 'announce_link' );
       <img src="<?php echo esc_url( $ewil_logo_src ); ?>" alt="" width="52" height="52">
       <span class="brand-txt"><span class="brand-name"><?php echo esc_html( $ewil_name ); ?></span><span class="brand-sub"><?php /* translators: %s: year */ echo esc_html( sprintf( __( 'Conference %s', 'ewil' ), $ewil_year ) ); ?></span></span>
     </a>
+    <?php $ewil_reg_item = ewil_register_item(); if ( $ewil_reg_item ) : ?><a class="btn btn-cta nav-reg" href="<?php echo esc_url( $ewil_reg_item->url ); ?>"><?php echo esc_html( $ewil_reg_item->title ); ?></a><?php endif; ?>
+
     <button class="burger" id="burger" hidden aria-expanded="false" aria-controls="menu" aria-label="<?php esc_attr_e( 'Open menu', 'ewil' ); ?>" data-label-open="<?php esc_attr_e( 'Open menu', 'ewil' ); ?>" data-label-close="<?php esc_attr_e( 'Close menu', 'ewil' ); ?>"><svg><use href="#i-menu"/></svg></button>
     <?php
     if ( ! ewil_menu( 'primary', '<ul class="menu" id="menu">%3$s</ul>' ) ) {

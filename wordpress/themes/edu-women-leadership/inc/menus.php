@@ -22,9 +22,11 @@ class EWIL_Menu_Walker extends Walker_Nav_Menu {
 	 */
 	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
 		$custom  = array_filter( (array) get_post_meta( $item->ID, '_menu_item_classes', true ) );
-		$current = in_array( 'current-menu-item', (array) $item->classes, true );
+		// A menu item with the CSS class "reg-item" is the design's Register button.
+		$button  = in_array( 'reg-item', $custom, true );
+		$current = ! $button && in_array( 'current-menu-item', (array) $item->classes, true );
 		$output .= '<li' . ( $custom ? ' class="' . esc_attr( implode( ' ', $custom ) ) . '"' : '' ) . '>';
-		$output .= '<a href="' . esc_url( $item->url ) . '"' . ( $current ? ' aria-current="page"' : '' ) . ( $item->target ? ' target="' . esc_attr( $item->target ) . '" rel="noopener"' : '' ) . '>' . esc_html( $item->title ) . '</a>';
+		$output .= '<a' . ( $button ? ' class="btn btn-cta"' : '' ) . ' href="' . esc_url( $item->url ) . '"' . ( $current ? ' aria-current="page"' : '' ) . ( $item->target ? ' target="' . esc_attr( $item->target ) . '" rel="noopener"' : '' ) . '>' . esc_html( $item->title ) . '</a>';
 	}
 
 	/**
@@ -90,6 +92,23 @@ function ewil_menu_name( $location ) {
 	$locations = get_nav_menu_locations();
 	$menu      = isset( $locations[ $location ] ) ? wp_get_nav_menu_object( $locations[ $location ] ) : null;
 	return $menu ? $menu->name : '';
+}
+
+/**
+ * The main menu's Register button item (CSS class "reg-item"), if there is one.
+ * On narrow screens the design shows it as a separate button beside the logo.
+ */
+function ewil_register_item() {
+	$locations = get_nav_menu_locations();
+	if ( empty( $locations['primary'] ) ) {
+		return null;
+	}
+	foreach ( (array) wp_get_nav_menu_items( $locations['primary'] ) as $item ) {
+		if ( $item && in_array( 'reg-item', (array) $item->classes, true ) ) {
+			return $item;
+		}
+	}
+	return null;
 }
 
 /**
