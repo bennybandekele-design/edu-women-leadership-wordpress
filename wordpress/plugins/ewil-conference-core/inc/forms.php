@@ -120,6 +120,15 @@ function ewil_privacy_link() {
 }
 
 /**
+ * Link to the Terms of Service used in the registration consent.
+ */
+function ewil_terms_link() {
+	$page = get_page_by_path( 'website-terms' );
+	$url  = $page && 'publish' === $page->post_status ? get_permalink( $page ) : home_url( '/website-terms/' );
+	return '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html__( 'Terms of Service', 'ewil' ) . '</a>';
+}
+
+/**
  * Titles of published posts of a conference post type, for dropdowns.
  *
  * @param string $post_type Post type slug.
@@ -229,7 +238,7 @@ function ewil_build_form( $kind ) {
     ' . $b->f( __( 'Country', 'ewil' ), 'country', 'select', array( 'options' => $countries ) ) . '
     ' . $b->f( __( 'Number of delegates', 'ewil' ), 'delegates', 'select', array( 'options' => array_map( 'strval', range( 1, ewil_max_delegates() ) ), 'default' => '1', 'attrs' => 'data-delegates', 'hint' => sprintf( /* translators: %d: maximum delegates */ __( 'Including you. Register up to %d delegates from your school or organisation, all at the rate chosen above.', 'ewil' ), ewil_max_delegates() ) ) ) . '
     </fieldset>' . ewil_delegate_fieldsets( $b, $roles ) . '
-    ' . $b->f( __( 'Dietary or accessibility requirements', 'ewil' ), 'requirements', 'textarea', array( 'req' => false, 'rows' => 3, 'hint' => __( 'For any delegate. Please include the delegate’s name.', 'ewil' ) ) ) . $b->consent( 'processing_consent', esc_html__( 'I agree that EduPulse Africa may use these details to manage my registration and contact me about it.', 'ewil' ), true ) . $b->marketing() . $b->submit( __( 'Submit registration', 'ewil' ), 'btn-cta' );
+    ' . $b->f( __( 'Dietary or accessibility requirements', 'ewil' ), 'requirements', 'textarea', array( 'req' => false, 'rows' => 3, 'hint' => __( 'For any delegate. Please include the delegate’s name.', 'ewil' ) ) ) . $b->consent( 'processing_consent', sprintf( /* translators: %s: Terms of Service link */ esc_html__( 'I agree that EduPulse Africa may use these details to manage my registration and contact me about it, and I accept the %s.', 'ewil' ), ewil_terms_link() ), true ) . $b->marketing() . $b->submit( __( 'Submit registration', 'ewil' ), 'btn-cta' );
 			break;
 
 		case 'contact':
