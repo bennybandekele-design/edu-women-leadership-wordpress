@@ -75,7 +75,7 @@ class EWIL_Form_Builder {
 	}
 
 	/**
-	 * A consent checkbox. $html may contain a link to the privacy notice.
+	 * A consent checkbox. $html may contain a link to the privacy policy.
 	 *
 	 * @param string $name Field name.
 	 * @param string $html Label HTML.
@@ -93,7 +93,7 @@ class EWIL_Form_Builder {
 	 * The optional marketing consent shared by several forms.
 	 */
 	public function marketing() {
-		/* translators: %s: privacy notice link */
+		/* translators: %s: privacy policy link */
 		return $this->consent( 'marketing_consent', sprintf( __( 'Yes, send me news about Edu Women in Leadership and EduPulse Africa events. I can unsubscribe at any time. See the %s.', 'ewil' ), ewil_privacy_link() ) );
 	}
 
@@ -109,14 +109,14 @@ class EWIL_Form_Builder {
 }
 
 /**
- * Link to the privacy notice used inside consent labels.
+ * Link to the privacy policy used inside consent labels.
  */
 function ewil_privacy_link() {
 	$url = get_privacy_policy_url();
 	if ( ! $url ) {
 		$url = home_url( '/privacy-notice/' );
 	}
-	return '<a href="' . esc_url( $url ) . '">' . esc_html__( 'privacy notice', 'ewil' ) . '</a>';
+	return '<a href="' . esc_url( $url ) . '">' . esc_html__( 'privacy policy', 'ewil' ) . '</a>';
 }
 
 /**
@@ -154,7 +154,7 @@ function ewil_build_form( $kind ) {
 		case 'newsletter':
 			$html = '<div class="row2">' . $b->f( __( 'Name', 'ewil' ), 'name', 'text', array( 'ac' => 'name' ) ) . $b->f( __( 'Email address', 'ewil' ), 'email', 'email', array( 'ac' => 'email' ) ) . '</div>'
 				. '<div class="row2">' . $b->f( __( 'Professional role', 'ewil' ), 'role', 'select', array( 'options' => $roles ) ) . $b->f( __( 'Country', 'ewil' ), 'country', 'select', array( 'options' => $countries ) ) . '</div>'
-				/* translators: %s: privacy notice link */
+				/* translators: %s: privacy policy link */
 				. $b->consent( 'marketing_consent', sprintf( __( 'I agree to receive news and updates from Edu Women in Leadership and EduPulse Africa. I can unsubscribe at any time. See the %s.', 'ewil' ), $privacy ), true )
 				. $b->submit( __( 'Join the community', 'ewil' ) );
 			break;

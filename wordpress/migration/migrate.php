@@ -1,5 +1,9 @@
 // Content migration from the original static site. Run through Novamira's
 // execute-php (no <?php tag). Idempotent: existing items are updated, not duplicated.
+//
+// ONE-TIME IMPORT, already run on 1 November 2026. Do not run it again on the
+// live site: it would overwrite content edited since (for example the Privacy
+// Policy, speakers' details and Conference Settings) with the original text.
 
 $media = get_option( 'ewil_media_ids' );
 $m     = function ( $file ) use ( $media ) { return (int) ( $media[ $file ] ?? 0 ); };
@@ -290,7 +294,7 @@ $locations = array(
 	'primary'        => $menu( 'Main menu', array( array( 'Home', $ids['home'] ), array( 'About', $ids['about'] ), array( 'Programme', $ids['programme'] ), array( 'Speakers', $ids['speakers'] ), array( 'Call for Papers', $ids['call-for-papers'] ), array( 'Awards', $ids['awards'] ), array( 'Partners', $ids['partners'] ), array( 'Contact', $ids['contact'] ) ) ),
 	'footer_explore' => $menu( 'Explore', array( array( 'About', $ids['about'] ), array( 'Programme', $ids['programme'] ), array( 'Speakers', $ids['speakers'] ), array( 'Contact', $ids['contact'] ) ) ),
 	'footer_part'    => $menu( 'Take part', array( array( 'Register', $ids['register'] ), array( 'Call for Papers', $ids['call-for-papers'] ), array( 'Nominate for the Awards', $ids['awards'] ), array( 'Partnership enquiries', $ids['partners'] ) ) ),
-	'footer_legal'   => $menu( 'Legal', array( array( 'Privacy notice', $ids['privacy-notice'] ), array( 'Website terms', $ids['website-terms'] ) ) ),
+	'footer_legal'   => $menu( 'Legal', array( array( 'Privacy policy', $ids['privacy-notice'] ), array( 'Website terms', $ids['website-terms'] ) ) ),
 );
 $mods                       = (array) get_option( 'theme_mods_edu-women-leadership', array() );
 $mods['nav_menu_locations'] = $locations;

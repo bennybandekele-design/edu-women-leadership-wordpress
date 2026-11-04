@@ -1,6 +1,6 @@
 <?php
 /**
- * Default page: page header and the editor text (Privacy notice, Website terms
+ * Default page: page header and the editor text (Privacy policy, Website terms
  * and any new page).
  */
 
