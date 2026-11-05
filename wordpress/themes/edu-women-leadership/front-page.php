@@ -204,7 +204,7 @@ $ewil_programme = ewil_page_url( 'programme' );
         <p class="eyebrow" style="margin:0"><?php echo ewil_x( ewil_t( 'pt_eyebrow', 'Partnerships & sponsorship' ) ); ?></p>
         <h2 class="h1 hn" id="pt-title"><?php echo ewil_h( ewil_t( 'pt_heading', 'Partner with us to shape the *future of education.*' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
         <p class="lede"><?php echo ewil_x( ewil_t( 'pt_lede', 'Put your organisation alongside the women leading change in South African and African schools, with partnerships designed around your goals.' ) ); ?></p>
-        <div class="actions"><?php ewil_button( ewil_t( 'pt_button' ), 'btn btn-primary btn-lg' ); ?></div>
+        <div class="actions"><?php ewil_button( ewil_t( 'pt_button' ), 'btn btn-primary btn-lg' ); ewil_button( ewil_t( 'pt_button_2' ), 'btn btn-secondary btn-lg', false ); ?></div>
       </div>
       <ul class="ptx-list rv"><?php foreach ( $ewil_opps as $ewil_o ) : ?><li><b><?php echo esc_html( get_the_title( $ewil_o ) ); ?></b><span><?php echo esc_html( ewil_field( 'description', '', $ewil_o->ID ) ); ?></span></li><?php endforeach; ?></ul>
     </div>

@@ -1376,6 +1376,22 @@
             "return_format": "array"
         },
         {
+            "key": "field_ewil_front_pt_button_2",
+            "label": "Second button",
+            "name": "pt_button_2",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Button text and where it goes. Leave empty to hide the button.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "key": "field_ewil_front_tab_registration",
             "label": "Registration",
             "name": "",
@@ -1560,5 +1576,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793564035
+    "modified": 1793857164
 }
