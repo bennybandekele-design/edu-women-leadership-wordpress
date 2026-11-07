@@ -146,6 +146,8 @@ $ewil_programme = ewil_page_url( 'programme' );
 
           <?php ewil_button( ewil_t( 'cfp_button_2' ), 'btn btn-secondary btn-lg', false ); ?>
 
+          <?php ewil_button( ewil_t( 'cfp_button_3' ), 'btn btn-ghost', false ); ?>
+
         </div>
       </div>
       <div class="cfpx-photo rv">
