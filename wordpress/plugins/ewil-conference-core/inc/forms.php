@@ -196,6 +196,7 @@ function ewil_build_form( $kind ) {
     ' . $b->f( __( 'Country', 'ewil' ), 'nominee_country', 'select', array( 'options' => $countries ) ) . '
     ' . ( $categories ? $b->f( __( 'Award category', 'ewil' ), 'category', 'select', array( 'options' => $categories ) ) : '' ) . '
     ' . $b->f( __( 'Why does the nominee deserve recognition?', 'ewil' ), 'motivation', 'textarea', array( 'rows' => 8, 'hint' => __( 'Explain how the nominee meets this category’s criteria: leadership, innovation, contribution and impact, with examples.', 'ewil' ) ) ) . '
+    ' . $b->f( __( 'Supporting document', 'ewil' ), 'document', 'file', array( 'req' => false, 'accept' => ewil_setting( 'cfp_file_types' ), 'maxmb' => ewil_setting( 'cfp_max_mb' ), 'hint' => sprintf( /* translators: 1: file types, 2: size in MB */ __( 'For example a CV, letters of support or examples of impact. %1$s, up to %2$s MB.', 'ewil' ), ewil_setting( 'cfp_file_label' ), ewil_setting( 'cfp_max_mb' ) ) ) ) . '
   </fieldset><fieldset><legend>' . esc_html__( 'About you', 'ewil' ) . '</legend>
     <div class="row2">' . $b->f( __( 'Your name', 'ewil' ), 'nominator_name', 'text', array( 'ac' => 'name' ) ) . $b->f( __( 'Your email address', 'ewil' ), 'nominator_email', 'email', array( 'ac' => 'email' ) ) . '</div>
     ' . $b->f( __( 'Your relationship to the nominee', 'ewil' ), 'relationship', 'text', array( 'req' => false, 'hint' => __( 'For example colleague, learner’s parent, district official, or “self-nomination”.', 'ewil' ) ) ) . '
