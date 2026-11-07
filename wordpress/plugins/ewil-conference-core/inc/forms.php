@@ -191,14 +191,14 @@ function ewil_build_form( $kind ) {
 		case 'nomination':
 			$categories = ewil_titles( 'ewil_award_category' );
 			$html       = '<fieldset><legend>' . esc_html__( 'The nominee', 'ewil' ) . '</legend>
-    <div class="row2">' . $b->f( __( 'Nominee’s name and surname', 'ewil' ), 'nominee_name' ) . $b->f( __( 'Nominee’s role', 'ewil' ), 'nominee_role' ) . '</div>
+    <div class="row2">' . $b->f( __( 'Nominee’s name', 'ewil' ), 'nominee_name', 'text', array( 'hint' => __( 'A person’s name and surname, or a company’s name.', 'ewil' ) ) ) . $b->f( __( 'Nominee’s role', 'ewil' ), 'nominee_role', 'text', array( 'hint' => __( 'Job title, or what the company or entrepreneur does.', 'ewil' ) ) ) . '</div>
     <div class="row2">' . $b->f( __( 'School or organisation', 'ewil' ), 'nominee_organisation' ) . $b->f( __( 'Province', 'ewil' ), 'nominee_province', 'select', array( 'options' => $provinces ) ) . '</div>
     ' . $b->f( __( 'Country', 'ewil' ), 'nominee_country', 'select', array( 'options' => $countries ) ) . '
     ' . ( $categories ? $b->f( __( 'Award category', 'ewil' ), 'category', 'select', array( 'options' => $categories ) ) : '' ) . '
-    ' . $b->f( __( 'Why does she deserve recognition?', 'ewil' ), 'motivation', 'textarea', array( 'rows' => 8, 'hint' => __( 'Describe her leadership, innovation, resilience and impact, with examples.', 'ewil' ) ) ) . '
+    ' . $b->f( __( 'Why does the nominee deserve recognition?', 'ewil' ), 'motivation', 'textarea', array( 'rows' => 8, 'hint' => __( 'Explain how the nominee meets this category’s criteria: leadership, innovation, contribution and impact, with examples.', 'ewil' ) ) ) . '
   </fieldset><fieldset><legend>' . esc_html__( 'About you', 'ewil' ) . '</legend>
     <div class="row2">' . $b->f( __( 'Your name', 'ewil' ), 'nominator_name', 'text', array( 'ac' => 'name' ) ) . $b->f( __( 'Your email address', 'ewil' ), 'nominator_email', 'email', array( 'ac' => 'email' ) ) . '</div>
-    ' . $b->f( __( 'Your relationship to the nominee', 'ewil' ), 'relationship', 'text', array( 'req' => false, 'hint' => __( 'For example colleague, learner’s parent, district official.', 'ewil' ) ) ) . '
+    ' . $b->f( __( 'Your relationship to the nominee', 'ewil' ), 'relationship', 'text', array( 'req' => false, 'hint' => __( 'For example colleague, learner’s parent, district official, or “self-nomination”.', 'ewil' ) ) ) . '
   </fieldset>' . $b->consent( 'processing_consent', esc_html__( 'I agree that EduPulse Africa may use these details to process this nomination and contact me about it.', 'ewil' ), true ) . $b->marketing() . $b->submit( __( 'Submit nomination', 'ewil' ), 'btn-cta' );
 			break;
 

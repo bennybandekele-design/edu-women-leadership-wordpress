@@ -213,3 +213,34 @@ function ewil_award_date_items() {
 function ewil_page_heading() {
 	return ewil_t( 'page_heading', get_the_title() );
 }
+
+/**
+ * Award categories listed under their group headings (Individual Awards,
+ * Education Business and Partnership Awards), numbered across both groups.
+ *
+ * @param WP_Post[] $categories Categories in display order.
+ */
+function ewil_award_category_lists( $categories ) {
+	$groups = array(
+		'individual' => __( 'Individual Awards', 'ewil' ),
+		'business'   => __( 'Education Business and Partnership Awards', 'ewil' ),
+	);
+	$by = array();
+	foreach ( $categories as $c ) {
+		$g          = get_field( 'award_group', $c->ID ) ?: 'individual';
+		$by[ $g ][] = $c;
+	}
+	$n = 0;
+	foreach ( $groups as $key => $label ) {
+		if ( empty( $by[ $key ] ) ) {
+			continue;
+		}
+		echo '<p class="small" style="margin:var(--space-3) 0 var(--space-1);font-weight:600;color:var(--ink)">' . esc_html( $label ) . '</p>';
+		echo '<ol class="small" start="' . ( $n + 1 ) . '" style="margin:0;padding-left:1.6em">';
+		foreach ( $by[ $key ] as $c ) {
+			$n++;
+			echo '<li>' . esc_html( get_the_title( $c ) ) . '</li>';
+		}
+		echo '</ol>';
+	}
+}

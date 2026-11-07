@@ -30,12 +30,12 @@ $ewil_fallbacks  = array(
   </div></section>
   <section class="band"><div class="wrap formgrid">
     <aside>
-      <div class="factbox"><h2 class="h3"><?php echo ewil_x( ewil_t( 'cat_heading', 'Award categories' ) ); ?></h2><div><?php if ( $ewil_categories ) : ?><ul class="small" style="margin:0;padding-left:1.2em"><?php foreach ( $ewil_categories as $ewil_c ) : ?><li><?php echo esc_html( get_the_title( $ewil_c ) ); ?></li><?php endforeach; ?></ul><?php else : ?><p class="small"><?php esc_html_e( 'Award categories will be announced when nominations open.', 'ewil' ); ?></p><?php endif; ?></div></div>
-      <div class="factbox"><h2 class="h3"><?php echo ewil_x( ewil_t( 'elig_heading', 'Eligibility' ) ); ?></h2><p class="small"><?php echo esc_html( ewil_setting( 'awards_eligibility' ) ?: $ewil_fallbacks['eligibility'] ); ?></p></div>
-      <div class="factbox"><h2 class="h3"><?php echo ewil_x( ewil_t( 'judg_heading', 'Judging' ) ); ?></h2><p class="small"><?php echo esc_html( ewil_setting( 'awards_judging' ) ?: $ewil_fallbacks['judging'] ); ?></p></div>
+      <div class="factbox"><h2 class="h3"><?php echo ewil_x( ewil_t( 'cat_heading', 'Award categories' ) ); ?></h2><div><?php if ( $ewil_categories ) : ?><?php ewil_award_category_lists( $ewil_categories ); ?><?php else : ?><p class="small"><?php esc_html_e( 'Award categories will be announced when nominations open.', 'ewil' ); ?></p><?php endif; ?></div></div>
+      <div class="factbox"><h2 class="h3"><?php echo ewil_x( ewil_t( 'elig_heading', 'Eligibility' ) ); ?></h2><p class="small"><?php echo nl2br( esc_html( ewil_setting( 'awards_eligibility' ) ?: $ewil_fallbacks['eligibility'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p></div>
+      <div class="factbox"><h2 class="h3"><?php echo ewil_x( ewil_t( 'judg_heading', 'Judging' ) ); ?></h2><p class="small"><?php echo nl2br( esc_html( ewil_setting( 'awards_judging' ) ?: $ewil_fallbacks['judging'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p></div>
     </aside>
     <div class="panel" id="nominate">
-      <div class="head" style="margin-bottom: var(--space-5)"><h2 class="h2"><?php echo ewil_x( ewil_t( 'form_heading', 'Nominate a leader' ) ); ?></h2><p class="small"><?php echo esc_html( ewil_setting( 'awards_guidelines' ) ?: $ewil_fallbacks['guidelines'] ); ?></p></div>
+      <div class="head" style="margin-bottom: var(--space-5)"><h2 class="h2"><?php echo ewil_x( ewil_t( 'form_heading', 'Nominate a leader' ) ); ?></h2><p class="small"><?php echo nl2br( esc_html( ewil_setting( 'awards_guidelines' ) ?: $ewil_fallbacks['guidelines'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p></div>
       <div data-form="nomination"><?php ewil_form( 'nomination' ); ?></div>
     </div>
   </div></section>

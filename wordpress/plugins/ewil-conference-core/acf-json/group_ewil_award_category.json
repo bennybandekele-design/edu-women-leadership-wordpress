@@ -3,6 +3,31 @@
     "title": "Category details",
     "fields": [
         {
+            "key": "field_ewil_award_category_award_group",
+            "label": "Award group",
+            "name": "award_group",
+            "type": "select",
+            "instructions": "Which group this category belongs to on the Awards page.",
+            "required": 1,
+            "choices": {
+                "individual": "Individual Awards",
+                "business": "Education Business and Partnership Awards"
+            },
+            "default_value": "individual",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
             "key": "field_ewil_award_category_description",
             "label": "Description",
             "name": "description",
@@ -44,5 +69,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793564031
+    "modified": 1794078502
 }
