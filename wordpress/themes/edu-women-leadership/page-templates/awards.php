@@ -23,6 +23,8 @@ $ewil_fallbacks  = array(
       <h1 class="h-lg"><?php echo ewil_h( ewil_page_heading() ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h1>
       <?php if ( ewil_t( 'page_lede' ) ) : ?><p class="lede"><?php echo ewil_x( ewil_t( 'page_lede' ) ); ?></p><?php endif; ?>
 
+      <?php $ewil_btn = ewil_t( 'page_button' ); if ( ! empty( $ewil_btn['url'] ) ) : ?><div class="actions" style="margin-top: var(--space-5)"><?php ewil_button( $ewil_btn, 'btn btn-inverse', false ); ?></div><?php endif; ?>
+
     </div>
     <ul class="dates"><?php ewil_award_date_items(); ?></ul>
   </div></section>
