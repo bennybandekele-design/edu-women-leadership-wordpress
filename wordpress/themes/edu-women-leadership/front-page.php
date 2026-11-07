@@ -190,6 +190,8 @@ $ewil_programme = ewil_page_url( 'programme' );
 
           <?php ewil_button( ewil_t( 'aw_button_2' ), 'btn btn-inverse btn-lg', false ); ?>
 
+          <?php ewil_button( ewil_t( 'aw_button_3' ), 'btn btn-ghost', false ); ?>
+
         </div>
       </div>
       <div class="awx-photo rv"><span class="ring" aria-hidden="true"></span><?php ewil_img( ewil_t( 'aw_image' ) ); ?></div>
