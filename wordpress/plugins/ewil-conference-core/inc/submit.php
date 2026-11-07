@@ -153,6 +153,13 @@ function ewil_handle_submission( WP_REST_Request $request ) {
 		}
 	}
 
+	if ( 'nomination' === $kind && ! $errors ) {
+		$limit = ewil_nomination_limit_error( $data['nominee_name'] ?? '', $data['category'] ?? '' );
+		if ( $limit ) {
+			return ewil_submit_error( $limit, 422, array( 'category' => $limit ) );
+		}
+	}
+
 	if ( $errors ) {
 		return ewil_submit_error( __( 'Some fields need your attention.', 'ewil' ), 422, $errors );
 	}
@@ -179,5 +186,88 @@ function ewil_handle_submission( WP_REST_Request $request ) {
 			'note'    => $note,
 		),
 		200
+	);
+}
+
+/**
+ * Most individual award categories one nominee can be nominated in.
+ */
+function ewil_max_nominee_categories() {
+	return (int) apply_filters( 'ewil_max_nominee_categories', 3 );
+}
+
+/**
+ * Normalises a nominee's name for matching: lower case, no punctuation or
+ * extra spaces, and no titles such as Dr, Mrs or Prof.
+ *
+ * @param string $name Name as typed.
+ */
+function ewil_normalise_nominee( $name ) {
+	$name = mb_strtolower( (string) $name );
+	$name = preg_replace( '/[^\p{L}\p{N}\s]+/u', ' ', $name );
+	$name = preg_replace( '/^(?:(?:dr|mrs|mr|ms|miss|mx|prof|professor|adv|rev|hon)\s+)+/u', '', trim( preg_replace( '/\s+/u', ' ', $name ) ) );
+	return trim( $name );
+}
+
+/**
+ * Award group (individual or business) of a category, by its title.
+ *
+ * @param string $title Category title.
+ */
+function ewil_category_group( $title ) {
+	$found = get_posts(
+		array(
+			'post_type'   => 'ewil_award_category',
+			'post_status' => 'publish',
+			'title'       => $title,
+			'numberposts' => 1,
+			'fields'      => 'ids',
+		)
+	);
+	return $found ? ( get_field( 'award_group', $found[0] ) ?: 'individual' ) : '';
+}
+
+/**
+ * Enforces "each individual nominee may be nominated in a maximum of three
+ * individual award categories". Counts distinct individual categories among
+ * the nominee's existing nominations; more nominations in a category the
+ * nominee already has are allowed. Business categories are not limited.
+ *
+ * @param string $nominee  Nominee's name as submitted.
+ * @param string $category Category title as submitted.
+ * @return string Error message, or '' when the nomination is allowed.
+ */
+function ewil_nomination_limit_error( $nominee, $category ) {
+	$key = ewil_normalise_nominee( $nominee );
+	if ( '' === $key || '' === $category || 'individual' !== ewil_category_group( $category ) ) {
+		return '';
+	}
+	$existing = get_posts(
+		array(
+			'post_type'   => 'ewil_submission',
+			'post_status' => 'publish',
+			'numberposts' => -1,
+			'fields'      => 'ids',
+			'tax_query'   => array( array( 'taxonomy' => 'ewil_form', 'field' => 'slug', 'terms' => 'nomination' ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
+		)
+	);
+	$categories = array();
+	foreach ( $existing as $id ) {
+		$data = (array) get_post_meta( $id, '_ewil_data', true );
+		if ( ewil_normalise_nominee( $data['nominee_name'] ?? '' ) !== $key || empty( $data['category'] ) ) {
+			continue;
+		}
+		if ( 'individual' === ewil_category_group( $data['category'] ) ) {
+			$categories[ $data['category'] ] = true;
+		}
+	}
+	if ( isset( $categories[ $category ] ) || count( $categories ) < ewil_max_nominee_categories() ) {
+		return '';
+	}
+	return sprintf(
+		/* translators: 1: maximum number, 2: categories the nominee already has */
+		__( 'This nominee has already been nominated in the maximum of %1$d individual award categories (%2$s). You can still support one of those nominations by nominating them again in the same category. If this is a different person with the same name, please let us know through the Contact page.', 'ewil' ),
+		ewil_max_nominee_categories(),
+		implode( '; ', array_keys( $categories ) )
 	);
 }
