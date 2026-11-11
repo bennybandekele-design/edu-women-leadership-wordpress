@@ -39,6 +39,29 @@ $ewil_fallbacks  = array(
       <div data-form="nomination"><?php ewil_form( 'nomination' ); ?></div>
     </div>
   </div></section>
+	<?php
+	$ewil_photos = array_filter( array_map( fn( $i ) => (int) ewil_t( 'gallery_photo_' . $i, 0 ), range( 1, 8 ) ) );
+	if ( $ewil_photos ) :
+		$ewil_g_eyebrow = ewil_t( 'gallery_eyebrow' );
+		$ewil_g_lede    = ewil_t( 'gallery_lede' );
+		?>
+  <section class="band tint" aria-labelledby="aw-gallery-title"><div class="wrap">
+    <div class="head rv">
+      <?php if ( $ewil_g_eyebrow ) : ?><p class="eyebrow"><?php echo ewil_x( $ewil_g_eyebrow ); ?></p><?php endif; ?>
+
+      <h2 class="h1 hn" id="aw-gallery-title"><?php echo ewil_h( ewil_t( 'gallery_heading', 'Celebrating *bold leaders*' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?></h2>
+      <?php if ( $ewil_g_lede ) : ?><p class="lede"><?php echo ewil_x( $ewil_g_lede ); ?></p><?php endif; ?>
+
+    </div>
+    <ul class="aw-gallery rv"><?php
+    foreach ( $ewil_photos as $ewil_pid ) {
+        $ewil_meta = wp_get_attachment_metadata( $ewil_pid );
+        $ewil_wide = ! empty( $ewil_meta['width'] ) && $ewil_meta['width'] > $ewil_meta['height'];
+        echo '<li' . ( $ewil_wide ? ' class="wide"' : '' ) . '>' . ewil_strip_dimensions( wp_get_attachment_image( $ewil_pid, 'large', false, array( 'loading' => 'lazy', 'sizes' => $ewil_wide ? '(max-width: 560px) 100vw, 400px' : '(max-width: 560px) 50vw, 200px' ) ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput
+    }
+    ?></ul>
+  </div></section>
+	<?php endif; ?>
 </div>
 <?php
 get_footer();
