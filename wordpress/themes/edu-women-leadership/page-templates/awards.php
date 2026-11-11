@@ -53,13 +53,7 @@ $ewil_fallbacks  = array(
       <?php if ( $ewil_g_lede ) : ?><p class="lede"><?php echo ewil_x( $ewil_g_lede ); ?></p><?php endif; ?>
 
     </div>
-    <ul class="aw-gallery rv"><?php
-    foreach ( $ewil_photos as $ewil_pid ) {
-        $ewil_meta = wp_get_attachment_metadata( $ewil_pid );
-        $ewil_wide = ! empty( $ewil_meta['width'] ) && $ewil_meta['width'] > $ewil_meta['height'];
-        echo '<li' . ( $ewil_wide ? ' class="wide"' : '' ) . '>' . ewil_strip_dimensions( wp_get_attachment_image( $ewil_pid, 'large', false, array( 'loading' => 'lazy', 'sizes' => $ewil_wide ? '(max-width: 560px) 100vw, 400px' : '(max-width: 560px) 50vw, 200px' ) ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput
-    }
-    ?></ul>
+    <?php ewil_awards_gallery( 'rv' ); ?>
   </div></section>
 	<?php endif; ?>
 </div>

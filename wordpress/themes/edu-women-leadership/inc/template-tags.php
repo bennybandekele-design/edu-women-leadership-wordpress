@@ -244,3 +244,31 @@ function ewil_award_category_lists( $categories ) {
 		echo '</ol>';
 	}
 }
+
+/**
+ * Prints the previous-awards photo grid chosen on the Awards page
+ * (fields gallery_photo_1 to gallery_photo_8). Upright photos take one grid
+ * place, wide photos two. Prints nothing when no photos are set.
+ *
+ * @param string $class Extra classes for the list.
+ * @param string $style Inline style for the list.
+ * @return bool Whether any photos were printed.
+ */
+function ewil_awards_gallery( $class = '', $style = '' ) {
+	$page = ewil_page_url( 'awards' ) ? url_to_postid( ewil_page_url( 'awards' ) ) : 0;
+	if ( ! $page ) {
+		return false;
+	}
+	$photos = array_filter( array_map( fn( $i ) => (int) get_field( 'gallery_photo_' . $i, $page ), range( 1, 8 ) ) );
+	if ( ! $photos ) {
+		return false;
+	}
+	echo '<ul class="aw-gallery' . ( $class ? ' ' . esc_attr( $class ) : '' ) . '"' . ( $style ? ' style="' . esc_attr( $style ) . '"' : '' ) . '>';
+	foreach ( $photos as $id ) {
+		$meta = wp_get_attachment_metadata( $id );
+		$wide = ! empty( $meta['width'] ) && $meta['width'] > $meta['height'];
+		echo '<li' . ( $wide ? ' class="wide"' : '' ) . '>' . ewil_strip_dimensions( wp_get_attachment_image( $id, 'large', false, array( 'loading' => 'lazy', 'sizes' => $wide ? '(max-width: 560px) 100vw, 400px' : '(max-width: 560px) 50vw, 200px' ) ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput
+	}
+	echo '</ul>';
+	return true;
+}

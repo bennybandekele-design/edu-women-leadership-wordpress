@@ -197,6 +197,8 @@ $ewil_programme = ewil_page_url( 'programme' );
         </div>
       </div>
       <div class="awx-photo rv"><span class="ring" aria-hidden="true"></span><?php ewil_img( ewil_t( 'aw_image' ) ); ?></div>
+      <?php $ewil_show = get_field( 'aw_show_gallery' ); if ( null === $ewil_show || $ewil_show ) { ewil_awards_gallery( 'rv', 'grid-column: 1 / -1' ); } // Shown unless switched off. ?>
+
     </div>
     <?php ewil_edge( 7, false, 'position:relative' ); ?>
 

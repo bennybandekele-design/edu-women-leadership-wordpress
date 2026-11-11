@@ -1314,6 +1314,25 @@
             "mime_types": ""
         },
         {
+            "key": "field_ewil_front_aw_show_gallery",
+            "label": "Show previous awards photos",
+            "name": "aw_show_gallery",
+            "type": "true_false",
+            "instructions": "Shows the photos chosen on the Awards page (Photo section) as a row at the bottom of this section.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_ewil_front_tab_partners",
             "label": "Partners",
             "name": "",
@@ -1608,5 +1627,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1794078125
+    "modified": 1794435011
 }
